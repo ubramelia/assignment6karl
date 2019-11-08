@@ -4,17 +4,17 @@
 // File:       pqueue.cpp
 // Tab stops:  4
 
-//This program can support an application by
-//providing / implementing priority queues
-//which are collections of items which each have a
-//priority.  It can create a variable q of the type
-//PriorityQueue and use debugging functions.
-//It also supports three other primary functions:
+// This program can support an application by
+// providing / implementing priority queues
+// which are collections of items which each have a
+// priority.  It can create a variable q of the type
+// PriorityQueue and use debugging functions.
+// It also supports three other primary functions:
 //
-//1. It lets you ask if a priority queue is empty,
-//2. It lets you insert an data (with a priority/
+// 1. It lets you ask if a priority queue is empty,
+// 2. It lets you insert an data (with a priority/
 //  weight) into the priority queue,
-//3. It lets you remove an Pritem from the
+// 3. It lets you remove an Pritem from the
 //  priority queue, assuming that the data has
 //  the smallest priority number in said queue
 
@@ -25,6 +25,8 @@ using namespace std;
 
 typedef const char* ItemType;
 typedef double PriorityType;
+
+void insertCell(PQCell*& q, ItemType x, PriorityType p);
 
 // An object of type PQCell is a cell in a linked list.
 // It holds an data, a priority, and a pointer to the
@@ -54,10 +56,10 @@ struct PQCell
     }
 };
 
-//The isEmpty() function is meant to test whether
-//a variable, q, is empty or not. It returns
-//either a "true" (if q is empty) or "false" (if
-//q is not empty).
+// The isEmpty() function is meant to test whether
+// a variable, q, is empty or not. It returns
+// either a "true" (if q is empty) or "false" (if
+// q is not empty).
 bool isEmpty(const PriorityQueue& q)
 {
     if (q.firstCell == NULL)
@@ -68,6 +70,14 @@ bool isEmpty(const PriorityQueue& q)
     {
         return false;
     }
+}
+
+// The insert() function inserts an data (x) with
+// its priority (p) into a PriorityQueue object
+// (q) by calling on the insertCell() function.
+void insert(PriorityQueue& q, ItemType x, PriorityType p)
+{
+    insertCell(q.firstCell, x, p);
 }
 
 // The insertCell() function inserts data x with
@@ -88,25 +98,16 @@ void insertCell(PQCell*& q, ItemType x, PriorityType p)
     }
 }
 
-// The insert() function inserts an data (x) with
-// its priority (p) into a PriorityQueue object
-// (q) by calling on the insertCell() function.
-void insert(PriorityQueue& q, ItemType x, PriorityType p)
-{
-    insertCell(q.firstCell, x, p);
-}
-
 // The printPriorityQueue() function prints to
 // the screen for debugging purposes.
 void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority)
 {
-    //change to for loop
-    PQCell* firstCell = q.firstCell;
+	PQCell* firstCell = q.firstCell;
     while (firstCell != NULL)
     {
         printf("\n");
         printItem(firstCell->data);
-        printf("\t");
+        printf(" Priority: ");
         printPriority(firstCell->priorityNum);
         firstCell = firstCell->nextCell;
     }

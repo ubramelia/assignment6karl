@@ -4,9 +4,6 @@
 // File:       pqueue.h
 // Tab stops:  4
 
-#ifndef pqueue_h
-#define pqueue_h
-
 typedef const char* ItemType;
 typedef double PriorityType;
 typedef void (*ItemPrinter)(ItemType);
@@ -30,9 +27,23 @@ struct PriorityQueue
     }
 };
 
+// This prototype is for the isEmpty() function in
+// pqueue.cpp which is meant to test whether a 
+// variable, q, is empty or not.
 bool isEmpty(const PriorityQueue& q);
-void insert(PriorityQueue& q, ItemType x, PriorityType p);
-void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority);
-void remove(PriorityQueue& q, ItemType& item, PriorityType& p);
 
-#endif
+// This prototype is for the insert() function in
+// pqueue.cpp which inserts an data (x) with its
+// priority (p) into a PriorityQueue object (q) 
+// by calling on the insertCell() function.
+void insert(PriorityQueue& q, ItemType x, PriorityType p);
+
+// This prototype is for the printPriorityQueue() 
+// function in pqueue.cpp which prints to the
+// the screen for debugging purposes.
+void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority);
+
+// This prototype is for the remove() function in
+// pqueue.cpp which removes the data from q that 
+// has the smallest priority.
+void remove(PriorityQueue& q, ItemType& item, PriorityType& p);
