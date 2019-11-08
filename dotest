@@ -1,0 +1,17 @@
+#!/bin/csh
+
+if ( ! -e testpqueue ) then
+  echo "The priority queue module and tester have not been compiled."
+  exit 1
+endif
+
+limit cputime 1
+./testpqueue
+set s = $status
+if ($s == 152) then
+  echo "Time limit exceeded"
+else if ($s == 139) then
+  echo "Segmentation fault"
+else if ($s != 0) then
+  echo "Fault" $s
+endif
