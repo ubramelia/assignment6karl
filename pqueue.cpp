@@ -93,7 +93,8 @@ void insertCell(PQCell*& q, ItemType x, PriorityType p)
     }
 }
 
-//printPriorityQueue() documentation
+// The printPriorityQueue() function prints to
+// the screen for debugging purposes.
 void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority);
 {
     //change to for loop
@@ -108,7 +109,10 @@ void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityP
     }
 }
 
-// remove()
+// The remove() function removes the item from
+// q that has the smallest priority.  If two or
+// more items have the same priority, it removes
+// one of them.
 void remove(PriorityQueue& q, ItemType& x, PriorityType& p)
 {
     PQCell* newPointer = q.firstCell;

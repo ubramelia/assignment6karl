@@ -4,6 +4,8 @@
 // File:       pqueue.h
 // Tab stops:  4
 
+#ifndef pqueue_h
+#define pqueue_h
 typedef const char* ItemType;
 typedef double PriorityType;
 typedef void (*ItemPrinter)(ItemType);
@@ -31,3 +33,5 @@ bool isEmpty(const PriorityQueue& q);
 void insert(PriorityQueue& q, ItemType x, PriorityType p);
 void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority);
 void remove(PriorityQueue& q, ItemType& item, PriorityType& p);
+
+#endif
