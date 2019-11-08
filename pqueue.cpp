@@ -12,10 +12,10 @@
 //It also supports three other primary functions:
 //
 //1. It lets you ask if a priority queue is empty,
-//2. It lets you insert an item (with a priority/
+//2. It lets you insert an data (with a priority/
 //  weight) into the priority queue,
 //3. It lets you remove an Pritem from the
-//  priority queue, assuming that the item has
+//  priority queue, assuming that the data has
 //  the smallest priority number in said queue
 
 #include <cstdio>
@@ -23,8 +23,11 @@
 #include "pqueue.h"
 using namespace std;
 
+typedef const char* ItemType;
+typedef double PriorityType;
+
 // An object of type PQCell is a cell in a linked list.
-// It holds an item, a priority, and a pointer to the
+// It holds an data, a priority, and a pointer to the
 // next cell in the list.
 
 // The fields are as follows:
@@ -39,14 +42,14 @@ using namespace std;
 // declared immediatley before it.
 struct PQCell
 {
-    PQCell* nextCell;
-    PriorityType weightVar;
+    PriorityType priorityNum;
     ItemType data;
+	PQCell* nextCell;
 
     PQCell(PQCell* q, ItemType x, PriorityType p)
     {
-        item = x;
         priorityNum = p;
+		data = x;
         nextCell = q;
     }
 };
@@ -67,18 +70,10 @@ bool isEmpty(const PriorityQueue& q)
     }
 }
 
-// The insert() function inserts an item (x) with
-// its priority (p) into a PriorityQueue object
-// (q) by calling on the insertCell() function.
-void insert(PriorityQueue& q, ItemType x, PriorityType p)
-{
-    insertCell(q.firstCell, x, p);
-}
-
-// The insertCell() function inserts item x with
+// The insertCell() function inserts data x with
 // priority p into linked list L (made of PQCells).
 // It assumes that L is in nondescending order by
-// priority, and it inserts the new item into the
+// priority, and it inserts the new data into the
 // correct spot so that the list is still in
 // nondescending order by priority.
 void insertCell(PQCell*& q, ItemType x, PriorityType p)
@@ -93,23 +88,31 @@ void insertCell(PQCell*& q, ItemType x, PriorityType p)
     }
 }
 
+// The insert() function inserts an data (x) with
+// its priority (p) into a PriorityQueue object
+// (q) by calling on the insertCell() function.
+void insert(PriorityQueue& q, ItemType x, PriorityType p)
+{
+    insertCell(q.firstCell, x, p);
+}
+
 // The printPriorityQueue() function prints to
 // the screen for debugging purposes.
-void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority);
+void printPriorityQueue(const PriorityQueue& q, ItemPrinter printItem, PriorityPrinter printPriority)
 {
     //change to for loop
     PQCell* firstCell = q.firstCell;
     while (firstCell != NULL)
     {
         printf("\n");
-        printItem(firstCell->item);
+        printItem(firstCell->data);
         printf("\t");
         printPriority(firstCell->priorityNum);
         firstCell = firstCell->nextCell;
     }
 }
 
-// The remove() function removes the item from
+// The remove() function removes the data from
 // q that has the smallest priority.  If two or
 // more items have the same priority, it removes
 // one of them.
@@ -118,7 +121,7 @@ void remove(PriorityQueue& q, ItemType& x, PriorityType& p)
     PQCell* newPointer = q.firstCell;
     if (isEmpty(q) == false)
     {
-        x = newPointer->item;
+        x = newPointer->data;
         p = newPointer->priorityNum;
         q.firstCell = q.firstCell->nextCell;
         delete newPointer;

@@ -6,6 +6,7 @@
 
 #ifndef pqueue_h
 #define pqueue_h
+
 typedef const char* ItemType;
 typedef double PriorityType;
 typedef void (*ItemPrinter)(ItemType);
@@ -20,7 +21,7 @@ struct PQCell;
 // in the linked list.  It also contains a
 // constructor by the same name that sets firstCell
 // to NULL.
-Struct PriorityQueue
+struct PriorityQueue
 {
     PQCell* firstCell;
     PriorityQueue()
